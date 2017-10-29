@@ -1,0 +1,180 @@
+<div class="row navigation valign-wrapper">
+    <div class="center full-width navigation-header">Main overview</div>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="full-width center">
+            <ul class="segmented-control">
+                <li class="segmented-control-item">
+                    <button class="btn-theme btn-active btn-mini-nav btn-mini-nav-left"
+                            ng-click="miniNavBtnClicked('left')">Studies
+                    </button>
+                </li>
+                <li class="segmented-control-item">
+                    <button class="btn-theme btn-mini-nav btn-mini-nav-right"
+                            onclick="window.location='#!/subjects'">
+                        Subjects
+                    </button>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div>
+        <div class="component">
+            <div class="row">
+                <div class="col s8 offset-s2">
+                    <div class="row">
+                        <div class="homepage-labels-wrapper relative">
+                            <span class="font-weigth-medium absolute margin-top-flat-10 heading-18">Building studies</span>
+                            <button data-target="modal-create-study"
+                                    class=" modal-trigger btn-theme-inverted valign-wrapper right">
+                                <span class="btn-label full-width center font-weigth-medium">Add</span>
+                            </button>
+                        </div>
+                    </div>
+                    <ul class="collapsible" data-collapsible="accordion">
+                        <li ng-if="customCollection.length===0">
+                            <div class="collapsible-header">
+                                <div class="container valign-wrapper full-width relative ">
+                                    <span class="margin-left-flat-15 heading-15 font-weigth-medium">{{Study.name}}</span>
+                                    <div class="links-right">
+                                        <div class=" margin-flat-10 font-weigth-medium">
+                                            <a href="#!/studies/{{Study.id}}">VIEW</a>
+                                            <a href="#!/studies/edit/{{Study.id}}">EDIT</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+
+                        <li ng-repeat="Study in customCollection | building: customCollection">
+                            <div class="collapsible-header">
+                                <div class="container valign-wrapper full-width relative ">
+                                    <span class="margin-left-flat-15 heading-15 font-weigth-medium">{{Study.name}}</span>
+                                    <div class="links-right">
+                                        <div class=" margin-flat-10 font-weigth-medium">
+                                            <a href="#!/studies/{{Study.id}}">VIEW</a>
+                                            <a href="#!/studies/edit/{{Study.id}}">EDIT</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="collapsible-body">
+                                <div ng-if="Study.subjects.length===0">
+                                    <div class="center font-weigth-medium">There are no subjects</div>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="component">
+            <div class="row">
+                <div class="col s8 offset-s2">
+                    <div class="row">
+                        <div class="homepage-labels-wrapper relative">
+                            <span class="font-weigth-medium absolute margin-top-flat-10 heading-18">Production studies</span>
+                            <button class="disabled invisible">
+                                <span class="btn-label full-width center font-weigth-medium">Add</span>
+                            </button>
+                        </div>
+                    </div>
+                    <ul class="collapsible" data-collapsible="accordion">
+                        <li ng-repeat="Study in customCollection | production: customCollection">
+                            <div class="collapsible-header">
+                                <div class="container valign-wrapper full-width relative ">
+                                    <span class="margin-left-flat-15 heading-15 font-weigth-medium">{{Study.name}}</span>
+                                    <div class="links-right">
+                                        <div class=" margin-flat-10 font-weigth-medium">
+                                            <a href="#!/studies/{{Study.id}}">VIEW</a>
+                                            <a href="#!/studies/edit/{{Study.id}}">EDIT</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="collapsible-body">
+                                <div ng-if="Study.subjects.length>0">
+                                    <div class="row">
+                                        <span class="font-weigth-medium">Subject</span>
+                                        <span class="right font-weigth-medium">Creation date</span>
+                                    </div>
+                                    <ul>
+                                        <li ng-repeat="subject in Study.subjects | orderBy: '-created'">
+                                            <div class="row border-bot-gray">
+                                                <span>{{subject.name}}</span>
+                                                <span class="right">{{subject.created | date: subject.created}}</span>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div ng-if="Study.subjects.length===0">
+                                    <div class="center font-weigth-medium">There are no subjects in this study yet</div>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="modal-create-study" class="modal modal-fixed-footer">
+        <div class="modal-content grey lighten-4">
+            <div class="row valign-wrapper">
+                <div class="center full-width heading-18 font-weigth-medium">Add new study</div>
+            </div>
+            <div class="row">
+                <form class="col s12" name="createStudy" onsubmit="$('#submit-createStudy').click()">
+                    <div class="row relative">
+                        <div class="input-field col s6 offset-s3">
+                            <label for="description">Study description</label>
+                            <textarea id="description"
+                                      name="description"
+                                      class="materialize-textarea"
+                                      required="required"
+                                      minlength="20"
+                                      ng-model-options="{ updateOn: 'blur' }"
+                                      ng-model="Study.description"></textarea>
+
+                        </div>
+                        <div class="error absolute bot-0 center full-width font-weigth-medium">
+                            <div class="show-1-only" ng-show="createStudy.description.$touched && createStudy.description.$invalid">
+                                <span ng-if="createStudy.description.$error.required">Description is required</span>
+                                <span ng-if="createStudy.description.$error.minlength">Description should contain at least 20 characters</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row relative">
+                        <div class="input-field col s6 offset-s3">
+                            <input id="name"
+                                   type="text"
+                                   name="name"
+                                   ng-model="Study.name"
+                                   ng-model-options="{ updateOn: 'blur' }"
+                                   required="required"
+                                   minlength="6"
+                                   maxlength="40"
+                            >
+                            <label for="name">Name of the study</label>
+                        </div>
+                        <div class="error absolute bot-0 center full-width font-weigth-medium">
+                            <div class="show-1-only" ng-show="createStudy.name.$touched && createStudy.name.$invalid">
+                                <span ng-if="createStudy.name.$error.required">The field is required</span>
+                                <span ng-if="createStudy.name.$error.minlength">The field should contain at least 6 characters</span>
+                            </div>
+                        </div>
+                    </div>
+                    <input type="submit" class="hide">
+                </form>
+            </div>
+        </div>
+        <div class="modal-footer  grey lighten-5">
+            <button id="submit-createStudy"
+                    class="btn-flat btn-theme-inverted btn-theme-text"
+                    ng-class="createStudy.$valid?'modal-close':'disabled'"
+                    ng-click="(createStudy.$valid)?studyCreate(Study):''">
+                <span class="font-weigth-medium ">Save</span>
+            </button>
+        </div>
+    </div>
+</div>

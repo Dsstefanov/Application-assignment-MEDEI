@@ -1,0 +1,236 @@
+/* app css stylesheet */
+.border-bot-gray {
+    border-bottom: 1px solid #bbb;
+}
+
+.navigation {
+    height: 44px;
+    background-color: #fafafa;
+}
+
+.full-width {
+    width: 100%;
+}
+
+.navigation-header {
+    font-size: 21px;
+}
+
+.btn-theme /*,
+.btn-theme:focus*/
+{
+    border: 1.5px solid #039be5;
+    color: #039be5;
+    background-color: #fff;
+    border-radius: 4px 4px 4px 4px;
+    height: 40px;
+    width: 120px;
+}
+
+.right.btn-theme:focus {
+    border-radius: 0 4px 4px 0;
+}
+
+.left.btn-theme:focus {
+    border-radius: 4px 0 0 4px;
+}
+
+.btn-theme-inverted /*,
+.btn-theme-inverted:focus*/
+{
+    border: 1.5px solid #039be5;
+    color: #fff;
+    background-color: #039be5;
+    border-radius: 4px 4px 4px 4px;
+    height: 40px;
+    width: 120px;
+}
+
+.btn-back,
+.btn-back:focus {
+    border: none;
+    color: #039be5;
+    background-color: #fff;
+    border-radius: 4px 4px 4px 4px;
+    height: 40px;
+    width: 85px;
+}
+
+.btn-label {
+    font-size: 18px;
+}
+
+.btn-mini-nav {
+    width: 200px;
+    height: 40px;
+}
+
+.btn-mini-nav-left {
+    border-radius: 4px 0 0 4px;
+}
+
+.btn-mini-nav-right {
+    border-radius: 0 4px 4px 0;
+}
+
+.btn-active {
+    color: #fff;
+    background-color: #039be5;
+}
+
+.segmented-control {
+    display: inline-block;
+    overflow: hidden;
+    list-style: none;
+}
+
+.segmented-control-item {
+    float: left;
+}
+
+button:focus {
+    background-color: #039be5; /*override materialize*/
+    color: #fff;
+}
+
+.homepage-labels-wrapper,
+.navigation button {
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.relative {
+    position: relative;
+}
+input[type = 'button']{
+    color: #039be5;
+    background-color: #ffffff;
+}
+input[type = 'button']::selection{
+    color: #ffffff;
+    background-color: #039be5;
+}
+.links-right {
+    position: absolute;
+    right: 0;
+}
+
+.invisible {
+    opacity: 0;
+}
+
+.margin-flat-10 a {
+    margin-left: 10px;
+    margin-right: 10px;
+    height: 100%;
+}
+
+.margin-right-flat-20 {
+    margin-right: 20px;
+}
+
+.bold {
+    font-weight: bold;
+}
+
+.font-weigth-medium {
+    font-weight: 600;
+}
+
+.absolute {
+    position: absolute;
+}
+
+.margin-top-flat-10 {
+    margin-top: 20px;
+}
+
+.no-margin-left {
+    margin-left: 0px;
+}
+
+.heading-24 {
+    font-size: 24px;
+}
+
+.heading-18 {
+    font-size: 18px;
+}
+
+.heading-15 {
+    font-size: 15px;
+}
+
+.margin-left-flat-15 {
+    margin-left: 15px;
+}
+
+.auto-width {
+    width: auto;
+}
+
+.error {
+    color: red;
+}
+
+.success {
+    color: green;
+}
+
+.disabled {
+    border: none;
+}
+
+.btn-left-update {
+    border-radius: 4px 0 0 4px;
+    border: 1.5px solid #039be5;
+    color: #039be5;
+    background-color: #fff;
+    height: 40px;
+    width: 120px;
+}
+
+
+button.active, a.active {
+    background-color: #039be5;
+    color: #ffffff;
+}
+
+.btn-right-update {
+    border-radius: 0 4px 4px 0;
+    border: 1.5px solid #039be5;
+    color: #039be5;
+    background-color: #fff;
+    height: 40px;
+    width: 120px;
+}
+input[type=text]:not(.browser-default):focus:not([readonly]) + label,
+textarea.materialize-textarea:focus:not([readonly]) + label {
+    color: #039be5;
+}
+
+input[type=text]:not(.browser-default):focus:not([readonly]),
+textarea.materialize-textarea:focus:not([readonly]) {
+    border-bottom: 1px solid #039be5;
+    box-shadow: 0 1px 0 0 #039be5;
+}
+
+i.no-margin-right {
+    margin-right: 0px;
+}
+.bot-0{
+    bottom: 0;
+}
+.right {
+    right: 0;
+}
+
+.navigation button {
+    height: 35px;
+}
+.show-1-only span{
+    display: none;
+}
+.show-1-only :nth-child(1){
+    display: block;
+}

@@ -1,0 +1,51 @@
+<div class="row navigation valign-wrapper">
+    <div class="center full-width navigation-header">Main overview</div>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="full-width center">
+            <ul class="segmented-control">
+                <li class="segmented-control-item">
+                    <button class="btn-theme btn-mini-nav btn-mini-nav-left"
+                            onclick="window.location='#!/studies'">Studies
+                    </button>
+                </li>
+                <li class="segmented-control-item">
+                    <button class="btn-theme btn-active btn-mini-nav btn-mini-nav-right">
+                        Subjects
+                    </button>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col s12">
+            <div class="row">
+                <div class="input-field col s6 offset-s3">
+                    <input id="filter-name" type="text" ng-model="subjectName">
+                    <label for="filter-name">Filter by subject name or study name</label>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col s8 offset-s2">
+    <table>
+        <thead>
+        <tr>
+            <th class="left">Name</th>
+            <th>Study</th>
+            <th class="right">Date of participation</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="subject in subjectsCollection | filter: subjectName| orderBy: '-created'">
+            <td>{{subject.name}}</td>
+            <td >{{subject.project}}</td>
+            <td class="right">{{subject.created | fullDate: subject.created}}</td>
+        </tr>
+        </tbody>
+    </table>
+    </div>
+</div>
+</div>

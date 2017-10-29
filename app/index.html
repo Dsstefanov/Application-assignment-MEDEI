@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html lang="en" ng-app="SmartTrial" class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html lang="en" ng-app="SmartTrial" class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html lang="en" ng-app="SmartTrial" class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html lang="en" ng-app="SmartTrial" class="no-js"> <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Application assignment</title>
+  <meta name="description" content="A doctor's site where you can register a study and subjects who participated in it">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+  <link rel="stylesheet" href="bower_components/html5-boilerplate/dist/css/normalize.css">
+  <link rel="stylesheet" href="bower_components/html5-boilerplate/dist/css/main.css">
+  <link rel="stylesheet" href="bower_components/materialize/dist/css/materialize.min.css">
+  <link rel="stylesheet" href="app.css">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <script src="bower_components/html5-boilerplate/dist/js/vendor/modernizr-2.8.3.min.js"></script>
+</head>
+<body>
+
+<div ng-cloak>
+  <div ng-view></div>
+</div>
+
+<script src="bower_components/angular/angular.js"></script>
+<script src="bower_components/angular-route/angular-route.js"></script>
+<script src="bower_components/jQuery/dist/jquery.min.js"></script>
+<script src="bower_components/materialize/dist/js/materialize.min.js"></script>
+<script src="bower_components/materialize/js/collapsible.js"></script>
+<script src="components/home/homepage.js"></script>
+<script src="components/studies/crud/create-study.js"></script>
+<script src="components/studies/crud/read-study.js"></script>
+<script src="components/studies/crud/update-study.js"></script>
+<script src="components/subjects/subjects.js"></script>
+<script src="shared/services/sort-collection.js"></script>
+<script src="shared/services/chart-init.js"></script>
+
+<script src="app.js"></script>
+<script src="bower_components/chart.js/dist/Chart.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,141 @@
+<div class="row navigation valign-wrapper relative full-width">
+    <div class="absolute left">
+        <button class="btn-back" ng-click="goToView()"><i class="material-icons left no-margin-right">keyboard_arrow_left</i>Back
+        </button>
+    </div>
+    <div class="center full-width navigation-header">Edit Study</div>
+    <div class="absolute right">
+        <button class="btn-theme-inverted font-weigth-medium heading-18" ng-click="save()">Save</button>
+    </div>
+</div>
+<div class="container">
+    <div ng-if="message[0]">
+        <p class="center heading-15 font-weigth-medium" ng-class="message[1]">{{message[2]}}</p>
+    </div>
+    <div class="row">
+        <div class="col m6 offset-m3">
+            <div class="row relative">
+                <form name="studyName">
+                    <div class="center">
+                        <div class="input-field">
+                            <input id="study-name"
+                                   type="text"
+                                   name="studyname"
+                                   ng-model="currentStudy.name"
+                                   required="required"
+                                   minlength="6">
+                            <label class="active" for="study-name">Study name</label>
+                        </div>
+                        <div class="error absolute bot-0 center full-width font-weigth-medium">
+                            <div class="show-1-only"
+                                 ng-show="studyName.studyname.$touched && studyName.studyname.$invalid">
+                                <span ng-if="studyName.studyname.$error.required">Field is required</span>
+                                <span ng-if="studyName.studyname.$error.minlength">Field should contain at least 6 characters</span>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="row"></div>
+            <div ng-show="segmentedMenu">
+                <div class="row">
+                    <div class="valign-wrapper">
+                        <div class="full-width center">
+                            <ul class="segmented-control">
+                                <li class="segmented-control-item">
+                                    <button class="btn-left-update"
+                                            ng-class="currentStudy.status === 'building' ? 'active' : ''"
+                                            ng-click="changeStatus('building')">
+                                        Building
+                                    </button>
+                                </li>
+                                <li class="segmented-control-item">
+                                    <button class="btn-right-update"
+                                            ng-class="currentStudy.status === 'production' ? 'active' : ''"
+                                            ng-click="changeStatus('production')">
+                                        Production
+                                    </button>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row"></div>
+    <div class="row relative">
+        <form name="description">
+        <div class="input-field col s8 offset-s2">
+        <textarea id="description"
+                  name="descriptionText"
+                  class="materialize-textarea"
+                  required="required"
+                  minlength="20"
+                  ng-model-options="{ updateOn: 'blur' }"
+                  ng-model="currentStudy.description"></textarea>
+            <label for="description" class="active">Description</label>
+        </div>
+        <div class="error absolute bot-0 center full-width font-weigth-medium">
+            <div class="show-1-only" ng-show="description.descriptionText.$touched && description.descriptionText.$invalid">
+                <span ng-if="description.descriptionText.$error.required">Description is required</span>
+                <span ng-if="description.descriptionText.$error.minlength">Description should contain at least 20 characters</span>
+            </div>
+        </div>
+        </form>
+    </div>
+
+    <div class="row" ng-if="currentStudy.status==='production'">
+        <div class="row">
+            <form name="subjectForm" onsubmit="$('#submit-subject-form').click()">
+                <div class="col s8 offset-s2 center">
+                   <div class="container"><span class="heading-15 font-weigth-medium margin-right-flat-20">Create new subject:</span></div>
+
+                    <div class="input-field inline">
+                        <input id="firstname"
+                               type="text"
+                               ng-model="Subject.firstname"
+                               required="required"
+                               minlength="3"
+                        >
+                        <label id="firstname-label" for="firstname">Name</label>
+                    </div>
+                    <div class="input-field inline">
+                        <input id="surname"
+                               type="text"
+                               ng-model="Subject.surname"
+                               required="required"
+                               minlength="3"
+                        >
+                        <label id="surname-label" for="surname">Surname</label>
+                    </div>
+                    <input type="submit" class="hidden">
+                    <button class="btn-theme-inverted margin-left-flat-15"
+                            id="submit-subject-form"
+                            ng-click="subjectForm.$valid? addSubject() : ''"
+                    >Add
+                    </button>
+                </div>
+            </form>
+        </div>
+        <div class="row">
+            <div class="col s8 offset-s2">
+                <table>
+                    <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th class="right">Date of participation</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat="subject in currentStudy.subjects">
+                        <td>{{subject.name}}</td>
+                        <td class="right">{{subject.created | fullDate: subject.created}}</td>
+                    </tr>
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+    </div>
+</div>

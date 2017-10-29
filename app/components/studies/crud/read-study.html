@@ -1,0 +1,70 @@
+<div class="row navigation valign-wrapper relative full-width">
+    <div class="absolute left">
+        <button class="btn-back" ng-click="goToStudies()"><i class="material-icons left no-margin-right">keyboard_arrow_left</i>Back
+        </button>
+    </div>
+    <div class="center full-width navigation-header">View Study</div>
+    <div class="absolute right">
+        <button class="btn-theme-inverted font-weigth-medium heading-18" ng-click="edit()">Edit</button>
+    </div>
+</div>
+<div class="container">
+    <div class="container">
+        <div class="row"></div>
+        <div class="row">
+            <div class="center">
+                <div class="heading-24 bold">{{currentStudy.name}}</div>
+                <div class="heading-15 font-weigth-medium">{{currentStudy.status | uppercase}} STUDY</div>
+            </div>
+        </div>
+        <div class="row"></div>
+        <div class="row">
+            <div class="heading-18 font-weigth-medium">Description</div>
+            <p>
+                {{currentStudy.description}}
+            </p>
+        </div>
+        <div ng-show="currentStudy.status==='production'">
+            <div ng-show="diagram">
+                <div class="row"></div>
+                <div class="heading-18 font-weigth-medium">Progress</div>
+                <p>
+                    <canvas id="chart"></canvas>
+                </p>
+            </div>
+            <div ng-hide="diagram">
+                <div class="heading-15 font-weigth-medium center">
+                    To build diagram first and last registered subject must have one week difference
+                </div>
+            </div>
+            <div class="row"></div>
+            <div ng-show="currentStudy.subjects.length!==0">
+                <div class="heading-18 font-weigth-medium">Subjects</div>
+                <table>
+                    <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th class="right">Date of participation</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat="subject in currentStudy.subjects | orderBy: '-created'">
+                        <td>{{subject.name}}</td>
+                        <td class="right">{{subject.created | fullDate: subject.created}}</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div ng-show="currentStudy.subjects.length===0">
+                <div class="heading-15 font-weigth-medium center">
+                    There are no registered subjects yet
+                </div>
+            </div>
+        </div>
+    </div>
+    <div ng-if="currentStudy.status==='building'">
+        <div class="heading-15 font-weigth-medium center">
+            Study in building cannot contain subjects
+        </div>
+    </div>
+</div>
