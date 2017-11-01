@@ -5,7 +5,7 @@
     </div>
     <div class="center full-width navigation-header">Edit Study</div>
     <div class="absolute right">
-        <button class="btn-theme-inverted font-weigth-medium heading-18" ng-click="save()">Save</button>
+        <button class="btn-theme-inverted font-weigth-medium heading-18" ng-click="(studyName.$valid && description.$valid)?save():''">Save</button>
     </div>
 </div>
 <div class="container">
