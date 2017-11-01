@@ -13,8 +13,9 @@ angular.module('SmartTrial.components.studies.crud.updateStudy', [])
         '$timeout',
         'customCollection',
         'editStudy',
-        function EditStudyController($scope, $routeParams, $location, $timeout, customCollection, editStudy) {
-            let currentStudy = customCollection[$routeParams.studyId]
+        'cloneObject',
+        function EditStudyController($scope, $routeParams, $location, $timeout, customCollection, editStudy, cloneObject) {
+            let currentStudy = cloneObject.clone(customCollection[$routeParams.studyId])
             $scope.segmentedMenu = currentStudy.subjects.length === 0
             let changeStatus = (status) => {
                 if (status === 'building') {
@@ -90,10 +91,13 @@ angular.module('SmartTrial.components.studies.crud.updateStudy', [])
     */
     .factory('editStudy', [
         '$q',
-        ($q) => {
-            function editStudy() {
+        'customCollection',
+        'cloneObject',
+        ($q, customCollection, cloneObject) => {
+            function editStudy(currentStudy, id) {
                 let deferred = $q.defer()
                 try {
+                    customCollection[id] = cloneObject.clone(currentStudy)
                     deferred.resolve("Successfully saved")
                 } catch (e) {
                     deferred.reject(e)
@@ -106,3 +110,19 @@ angular.module('SmartTrial.components.studies.crud.updateStudy', [])
             }
         }
     ])
+.factory('cloneObject', [
+    () => {
+        function clone(collection) {
+            let clonedObj = {}
+            clonedObj.name = collection.name
+            clonedObj.description = collection.description
+            clonedObj.status = collection.status
+            clonedObj.subjects = []
+            for(let i=0; i<collection.subjects.length;i++){
+                clonedObj.subjects[i] = collection.subjects[i]
+            }
+            return clonedObj
+        }
+        return {clone:clone}
+    }
+])
