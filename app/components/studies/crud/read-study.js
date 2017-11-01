@@ -17,16 +17,14 @@ angular.module('SmartTrial.components.studies.crud.readStudy', ['ngRoute'])
         function StudiesController($scope, $routeParams, $location, customCollection, chartInitialize) {
             let currentStudy = customCollection[$routeParams.studyId]
             let diagram=false
-            $(document).ready(() => {
-                let data = chartInitialize.parseAndSort(currentStudy.subjects)
-                console.log(data)
-                if (data[data.length - 1] - data[0] > 518400000) {
-                    diagram = true
+            let data = chartInitialize.parseAndSort(currentStudy.subjects)
+            if (data[data.length - 1] - data[0] > 518400000) {
+                diagram = true
+                $(document).ready(() => {
                     let diagramCtx = $('#chart')
-                    console.log(diagramCtx)
                     chartInitialize.generateChart(currentStudy.subjects, 'Subjects', diagramCtx)
-                }
-            })
+                })
+            }
             $scope.diagram=diagram
             $scope.goToStudies = () => {
                 $location.path('/studies')
